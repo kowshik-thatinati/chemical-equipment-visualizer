@@ -81,8 +81,7 @@ const Sidebar = ({ activePage, setActivePage, theme }) => {
                         key={item.id}
                         onClick={() => {
                             setActivePage(item.id);
-                            // Optional: Close on select for mobile feel, or keep open for desktop. 
-                            // Creating a "Desktop" feel, so we might keep it open.
+                            setIsOpen(false); 
                         }}
                         style={{
                             background: activePage === item.id 

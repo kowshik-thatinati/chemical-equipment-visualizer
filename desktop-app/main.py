@@ -213,31 +213,80 @@ class ChemicalApp(QMainWindow):
     def create_home_page(self):
         page = QWidget()
         layout = QVBoxLayout(page)
+        layout.setAlignment(Qt.AlignCenter)
         
         # Card Container
         self.home_card = QFrame()
         self.home_card.setFrameShape(QFrame.StyledPanel)
+        self.home_card.setFixedWidth(800)
+        
         card_layout = QVBoxLayout(self.home_card)
         card_layout.setContentsMargins(50, 50, 50, 50)
+        card_layout.setSpacing(10)
         
-        title = QLabel("CHEM VISUALIZER")
+        # 1. Title
+        title_html = """
+        <html><head/><body>
+            <p align="center">
+                <span style="font-size:36pt; font-weight:600; color:#00f3ff;">CHEM</span>
+                <span style="font-size:36pt; font-weight:600; color:#bc13fe;">VISUALIZER</span>
+            </p>
+        </body></html>
+        """
+        title = QLabel(title_html)
         title.setAlignment(Qt.AlignCenter)
-        title.setFont(QFont("Segoe UI", 36, QFont.Bold))
-        # Custom coloring for title to stay vibrant
-        title.setStyleSheet("color: #bc13fe;") 
         
-        desc = QLabel("Advanced Equipment Parameter Analytics\n\nWelcome to the Desktop Command Center. This tool provides instant analytics for chemical plant equipment.\n\nMonitor Flowrates, Pressure, and Temperature with precision.")
-        desc.setWordWrap(True)
-        desc.setAlignment(Qt.AlignCenter)
-        desc.setFont(QFont("Segoe UI", 14))
+        # 2. Intro Paragraph
+        intro_text = """
+        <html><head/><body>
+        <p style="font-size: 14pt; line-height: 1.6;">
+        Welcome to the <b>Chemical Equipment Data Visualizer</b>. 
+        This powerful tool is designed for chemical engineers and plant operators to analyze equipment performance metrics.
+        </p>
+        </body></html>
+        """
+        intro = QLabel(intro_text)
+        intro.setWordWrap(True)
+        intro.setAlignment(Qt.AlignLeft)
+        
+        # 3. Why Use This Tool
+        why_text = """
+        <html><head/><body>
+        <h3 style="color: #00f3ff; font-size: 16pt; margin-bottom: 10px;">Why use this tool?</h3>
+        <ul style="font-size: 12pt; margin-top: 0px; margin-bottom: 0px; margin-left: 10px;">
+            <li style="margin-bottom: 10px;"><b>Instant Analytics:</b> Upload your CSV logs and get immediate visualizations of Flowrate, Pressure, and Temperature.</li>
+            <li style="margin-bottom: 10px;"><b>Outlier Detection:</b> Quickly spot equipment operating outside of nominal parameters.</li>
+            <li style="margin-bottom: 10px;"><b>Type Distribution:</b> Understand your equipment inventory breakdown (Pumps, Exchangers, Tanks) at a glance.</li>
+            <li style="margin-bottom: 10px;"><b>History Tracking:</b> Review your 5 most recently uploaded datasets.</li>
+        </ul>
+        </body></html>
+        """
+        why_label = QLabel(why_text)
+        why_label.setWordWrap(True)
+        why_label.setAlignment(Qt.AlignLeft)
+
+        # 4. Get Started Box
+        instr_frame = QFrame()
+        instr_frame.setObjectName("InstructionBox")
+        # Inline style for visibility in both themes (semi-transparent)
+        instr_frame.setStyleSheet("QFrame#InstructionBox { background-color: rgba(127, 127, 127, 0.15); border-radius: 8px; border: 1px solid rgba(127,127,127, 0.3); }")
+        instr_layout = QVBoxLayout(instr_frame)
+        instr_layout.setContentsMargins(15, 15, 15, 15)
+        
+        instr_lbl = QLabel('<html><head/><body><span style="font-size: 12pt;"><b>Get Started:</b> Use the sidebar menu to select <b>"Application"</b> and upload your first dataset.</span></body></html>')
+        instr_lbl.setWordWrap(True)
+        instr_layout.addWidget(instr_lbl)
         
         card_layout.addWidget(title)
+        card_layout.addSpacing(10)
+        card_layout.addWidget(intro)
+        card_layout.addSpacing(10)
+        card_layout.addWidget(why_label)
         card_layout.addSpacing(20)
-        card_layout.addWidget(desc)
+        card_layout.addWidget(instr_frame)
         card_layout.addStretch()
         
         layout.addWidget(self.home_card)
-        layout.setContentsMargins(50, 50, 50, 50)
         return page
 
     def create_dashboard_page(self):

@@ -10,6 +10,7 @@ import {
   ArcElement,
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // Register ChartJS components
 ChartJS.register(
@@ -19,7 +20,8 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ArcElement
+  ArcElement,
+  ChartDataLabels
 );
 
 const Charts = ({ data, theme }) => {
@@ -56,6 +58,9 @@ const Charts = ({ data, theme }) => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
+      datalabels: {
+        display: false
+      },
       legend: { 
         display: false
       },
@@ -109,6 +114,25 @@ const Charts = ({ data, theme }) => {
      responsive: true,
      maintainAspectRatio: false,
      plugins: {
+        datalabels: {
+            color: '#fff',
+            textShadowColor: 'black',
+            textShadowBlur: 4,
+            formatter: (value, ctx) => {
+                let sum = 0;
+                let dataArr = ctx.chart.data.datasets[0].data;
+                dataArr.map(data => {
+                    sum += (typeof data === 'number' ? data : 0);
+                });
+                let percentage = ((value * 100) / sum).toFixed(1) + "%";
+                return percentage;
+            },
+            font: {
+                weight: 'bold',
+                size: 14,
+                family: "'Rajdhani', sans-serif"
+            }
+        },
         legend: { 
             position: 'right',
             labels: { 
