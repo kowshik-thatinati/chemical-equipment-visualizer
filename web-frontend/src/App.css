@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;500;600;700&display=swap');
+
+/* CSS Variables for Theming */
+:root {
+  /* Dark Mode (Default) */
+  --bg-color: #050510;
+  --bg-image: 
+    radial-gradient(circle at 15% 15%, rgba(0, 255, 242, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(188, 19, 254, 0.12) 0%, transparent 40%),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  --bg-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: #8892b0;
+  
+  --card-bg: rgba(20, 20, 35, 0.6);
+  --card-border: rgba(0, 243, 255, 0.2);
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  
+  --accent-primary: #00f3ff; /* Cyan */
+  --accent-secondary: #bc13fe; /* Pink */
+  --accent-success: #00ff9d;
+  
+  --button-gradient: linear-gradient(90deg, #00f3ff 0%, #0066ff 100%);
+  --button-text: #000;
+  
+  --input-bg: rgba(0, 0, 0, 0.3);
+  --input-border: rgba(0, 243, 255, 0.5);
+
+  --table-header-bg: rgba(0, 243, 255, 0.05);
+  --table-border: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] {
+  --bg-color: #f0f2f5;
+  --bg-image: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  --bg-size: cover;
+  
+  --text-primary: #1a1a1a;
+  --text-secondary: #444444;
+  --text-tertiary: #666666;
+  
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 255, 255, 0.6);
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  
+  --accent-primary: #0056b3; /* Deep Blue */
+  --accent-secondary: #d63384; /* Deep Pink */
+  --accent-success: #008040;
+  
+  --button-gradient: linear-gradient(90deg, #0056b3 0%, #00c6ff 100%);
+  --button-text: #fff;
+  
+  --input-bg: rgba(255, 255, 255, 0.5);
+  --input-border: rgba(0, 0, 0, 0.2);
+
+  --table-header-bg: rgba(0, 0, 0, 0.05);
+  --table-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bg-color);
+  background-image: var(--bg-image);
+  background-size: var(--bg-size);
+  background-attachment: fixed; /* Fix background for scrolling */
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-size: 18px; /* Base font size increased */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Universal Helper Classes */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+

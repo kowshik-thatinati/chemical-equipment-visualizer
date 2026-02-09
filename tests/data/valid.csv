@@ -1,0 +1,3 @@
+Equipment Name,Type,Flowrate,Pressure,Temperature
+Pump-A,Pump,100,5.0,90
+Valve-A,Valve,50,2.0,80
