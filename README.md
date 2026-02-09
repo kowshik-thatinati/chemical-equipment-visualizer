@@ -1,154 +1,149 @@
 # Chemical Equipment Visualizer
 
-A full-stack web application designed for chemical engineers and plant operators to visualize equipment performance metrics. This tool allows users to upload CSV logs, analyze key parameters (Flowrate, Pressure, Temperature), and view interactive visualizations with a modern, responsive Cyberpunk-themed UI.
+**A cross-platform data visualization tool for chemical equipment analytics.**  
+*Developed for the FOSSEE Semester Long Internship 2026 Screening Task.*
 
-## 📌 Internship Screening Task Context
+This project implements a full-stack solution featuring a **Shared Django Backend**, a **React Web Client**, and a **PyQt5 Desktop Client**. It enables chemical engineers to upload equipment logs (CSV), view real-time performance metrics, and track historical data in a modern, Cyberpunk-themed interface.
 
-This project was developed as part of the **FOSSEE Semester Long Internship 2026 screening task**.
-
-The screening task required:
-- A common Django REST backend
-- A Web frontend (React) and a Desktop frontend (PyQt5)
-- CSV upload, analytics, visualization, and history tracking
-
-Both the **Web Application** and **Desktop Application** are fully implemented and connected to a shared Backend API.
 ## 🚀 Features
 
-*   **CSV Data Upload**: Seamlessly upload equipment data logs for processing.
-*   **Automated Analytics**: Instantly calculates average operational metrics and equipment type distributions using Pandas.
-*   **Interactive Visualizations**:
-    *   **Bar Charts**: Compare average Flowrate, Pressure, and Temperature.
-    *   **Pie Charts**: Visualize the distribution of equipment types (Pumps, Heat Exchangers, Tanks, etc.).
-*   **Upload History**: Tracks the last 5 uploaded datasets for quick reference.
-*   **Modern UI/UX**:
-    *   **Cyberpunk & Light Themes**: One-click toggle between a futuristic dark mode and a clean light mode.
-    *   **Responsive Dashboard**: Full-screen layout with a collapsible sidebar navigation.
-    *   **Data Validation**: Ensures uploaded files meet the required schema before processing.
+### Core Functionality
+*   **CSV Data Processing**: Upload and analyze equipment logs instantly.
+*   **Smart Analytics**: Calculates Average Flowrate, Pressure, and Temperature automatically via Pandas.
+*   **Visualizations**:
+    *   **Bar Charts**: Comparative analysis of key parameters.
+    *   **Pie Charts**: Equipment type distribution (Pumps, Tanks, Exchangers).
+*   **History Tracking**: Retains the last 5 uploaded datasets for quick reference.
 
-## 🛠️ Tech Stack
+### User Interface
+*   **Dual Frontend**: Access the tool via a Web Browser or a Native Desktop App.
+*   **Theme System**: Toggle between **Cyberpunk Dark Mode** and **Clean Light Mode**.
+*   **Responsive Design**: Full-screen layouts with collapsible sidebars.
 
-### Backend
-*   **Python 3.x**
-*   **Django 5.0** & **Django REST Framework (DRF)**
-*   **Pandas**: For high-performance data manipulation and analysis.
-*   **SQLite**: Lightweight database for history tracking.
+## 🛠️ Tech Architecture
 
-### Frontend (Web)
-*   **React 19**: Modern UI library for building interactive interfaces.
-*   **Vite**: Next-generation frontend tooling.
-*   **Chart.js** & **React-Chartjs-2**: For rendering responsive charts.
-*   **CSS Modules & Variables**: For dynamic theming and glassmorphism effects.
-
-### Frontend (Desktop)
-*   **PyQt5**: Native Windows GUI framework.
-*   **Matplotlib**: Python plotting library embedded in Qt.
-*   **Requests**: For consuming the Django API.
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Backend** | Django 5.0 + DRF | REST API handling data processing & storage. |
+| **Database** | SQLite | Stores uploaded file metadata (History). |
+| **Data Engine** | Pandas | High-performance CSV parsing & calculation. |
+| **Web Client** | React 19 + Vite | Modern, responsive web interface using Chart.js. |
+| **Desktop Client** | PyQt5 + Matplotlib | Native Windows application consuming the same API. |
 
 ## 📂 Project Structure
 
 ```
 chemical-equipment-visualiser/
-├── backend/                # Django Backend
-│   ├── api/                # API App (Models, Views, Serializers)
-│   ├── core/               # Project Settings
-│   └── manage.py           # Django entry point
-├── web-frontend/           # React Web Client
+├── backend/                # Server Side
+│   ├── api/                # API Logic (Views, Serializers)
+│   ├── core/               # Django Settings
+│   └── manage.py           # Entry point
+│
+├── web-frontend/           # Web Client
 │   ├── src/
-│   │   ├── components/     # UI Components (Dashboard, Charts, History)
-│   │   └── App.jsx         # Main Application wrapper
-│   └── package.json        # Dependencies
-├── desktop-app/            # PyQt5 Desktop Client
-│   ├── main.py             # Desktop App Entry Point
-│   └── requirements.txt    # Desktop dependencies
-└── sample_equipment_data.csv # Sample dataset for testing
+│   │   ├── components/     # React Components (Sidebar, Dashboard, History)
+│   │   └── App.jsx         # Main App Wrapper
+│   └── package.json        
+│
+├── desktop-app/            # Desktop Client
+│   ├── main.py             # PyQt5 Application Entry Point
+│   └── requirements.txt    # Desktop-specific dependencies
+│
+└── sample_equipment_data.csv # Test Dataset
 ```
 
-## ⚡ Getting Started
+## ⚡ Installation & Setup
 
 ### Prerequisites
-*   Node.js (v16+) & npm
-*   Python (v3.9+)
+*   **Python 3.9+**
+*   **Node.js 16+** & **npm**
 
-### 1. Backend Setup (Django)
-
-Navigate to the backend directory and set up the Python environment.
+### Step 1: Backend Setup (Required)
+The backend must be running for both clients to work.
 
 ```bash
 cd backend
 
-# Create virtual environment
+# Create & Activate Virtual Environment
 python -m venv venv
-
-# Activate virtual environment
 # Windows:
 venv\Scripts\activate
-# Mac/Linux:
+# Linux/Mac:
 # source venv/bin/activate
 
-# Install dependencies
+# Install Dependencies
 pip install django djangorestframework pandas django-cors-headers
 
-# Apply Migrations
+# Initialize Database
 python manage.py migrate
 
-# Run the Server
+# Start Server
 python manage.py runserver
 ```
-*The backend API will run at `http://127.0.0.1:8000/`*
+*Server running at: `http://127.0.0.1:8000/`*
 
-### 2. Frontend Setup (React)
+---
 
-Open a new terminal and navigate to the frontend directory.
+### Step 2: Web Client Setup (Optional)
 
 ```bash
+# Open a new terminal
 cd web-frontend
 
-# Install dependencies
+# Install Dependencies
 npm install
 
-# Run the Development Server
+# Start Web App
 npm run dev
 ```
-*The web application will run at `http://localhost:5173/` (or the port shown in your terminal)*
+*Access Web App at: `http://localhost:5173/`*
 
-### 3. Frontend Setup (Desktop)
+---
 
-Open a new terminal.
+### Step 3: Desktop Client Setup (Optional)
 
 ```bash
-# Install Desktop Dependencies
+# Open a new terminal
+# Ensure you have the Python dependencies installed
 pip install pyqt5 matplotlib requests
 
-# Run the Desktop App
+# Run Desktop App
 python desktop-app/main.py
 ```
+*The native application window will launch.*
 
-## 📖 Usage Guide
+## 📖 How to Use
 
-1.  **Home**: Overview of the application capabilities.
-2.  **Application**:
-    *   Click **"Upload CSV"** and select a file (use `sample_equipment_data.csv` for a quick test).
-    *   Ideally, your CSV should have columns: `Equipment ID`, `Equipment Name`, `Type`, `Flowrate`, `Pressure`, `Temperature`, `Status`.
-    *   View the generated KPIS and Charts immediately.
-3.  **History**: Check the "History" tab to see a log of your recent 5 uploads with their timestamps.
-4.  **Theming**: Click the Sun/Moon icon in the top right to switch visual themes.
+1.  **Launch the App**: Open either the Web URL or the Desktop App.
+2.  **Navigation**: Use the **Sidebar (☰)** to switch between:
+    *   **Home**: Project overview.
+    *   **Application**: The main dashboard.
+    *   **History**: Log of recent uploads.
+3.  **Analyze Data**:
+    *   Go to **Application**.
+    *   Click **Upload CSV**.
+    *   Select `sample_equipment_data.csv`.
+    *   View generated KPIs (Cards) and Charts.
+4.  **Check History**: Go to **History** to see your upload record.
+5.  **Change Theme**: Click the **Sun/Moon** button in the sidebar to toggle themes.
 
-## 📡 API Endpoints
+## 📡 API Reference
 
-| Method | Endpoint | Description |
+| Endpoint | Method | Purpose |
 | :--- | :--- | :--- |
-| `POST` | `/api/upload/` | Upload a CSV file and return analysis stats (JSON). |
-| `GET` | `/api/history/` | Retrieve metadata for the last 5 uploaded datasets. |
+| `/api/upload/` | `POST` | Accepts `.csv` file, returns JSON stats. |
+| `/api/history/` | `GET` | Returns list of last 5 CSVs. |
 
 ## 🔮 Future Roadmap
 
-*   **Export Reports**: PDF/Image export for analysis results.
-*   **User Authentication**: Multi-user login system.
-*   **Real-time WebSocket**: For live data streaming.
+*   **Export Reports**: Download charts as PDF/PNG.
+*   **User Auth**: Multi-user login support.
+*   **Live Data**: WebSocket integration for real-time sensor streams.
 
-## 📤 Submission Details
+## 📤 Submission Info
 
-- **GitHub Repository**: https://github.com/kowshik-thatinati/chemical-equipment-visualizer
-- **Demo Video**: (Provided in the FOSSEE submission form)
+*   **Repository**: [GitHub Link](https://github.com/kowshik-thatinati/chemical-equipment-visualizer)
+*   **Role**: FOSSEE Internship Screening Task
+
 ---
-*Created for the Chemical Equipment Visualization Project.*
+*Built with ❤️ using Django, React, and Python.*
