@@ -2,6 +2,16 @@
 
 A full-stack web application designed for chemical engineers and plant operators to visualize equipment performance metrics. This tool allows users to upload CSV logs, analyze key parameters (Flowrate, Pressure, Temperature), and view interactive visualizations with a modern, responsive Cyberpunk-themed UI.
 
+## 📌 Internship Screening Task Context
+
+This project was developed as part of the **FOSSEE Semester Long Internship 2026 screening task**.
+
+The screening task required:
+- A common Django REST backend
+- A Web frontend (React) and a Desktop frontend (PyQt5)
+- CSV upload, analytics, visualization, and history tracking
+
+Both the **Web Application** and **Desktop Application** are fully implemented and connected to a shared Backend API.
 ## 🚀 Features
 
 *   **CSV Data Upload**: Seamlessly upload equipment data logs for processing.
@@ -23,11 +33,16 @@ A full-stack web application designed for chemical engineers and plant operators
 *   **Pandas**: For high-performance data manipulation and analysis.
 *   **SQLite**: Lightweight database for history tracking.
 
-### Frontend
+### Frontend (Web)
 *   **React 19**: Modern UI library for building interactive interfaces.
 *   **Vite**: Next-generation frontend tooling.
 *   **Chart.js** & **React-Chartjs-2**: For rendering responsive charts.
 *   **CSS Modules & Variables**: For dynamic theming and glassmorphism effects.
+
+### Frontend (Desktop)
+*   **PyQt5**: Native Windows GUI framework.
+*   **Matplotlib**: Python plotting library embedded in Qt.
+*   **Requests**: For consuming the Django API.
 
 ## 📂 Project Structure
 
@@ -37,11 +52,14 @@ chemical-equipment-visualiser/
 │   ├── api/                # API App (Models, Views, Serializers)
 │   ├── core/               # Project Settings
 │   └── manage.py           # Django entry point
-├── web-frontend/           # React Frontend
+├── web-frontend/           # React Web Client
 │   ├── src/
 │   │   ├── components/     # UI Components (Dashboard, Charts, History)
 │   │   └── App.jsx         # Main Application wrapper
 │   └── package.json        # Dependencies
+├── desktop-app/            # PyQt5 Desktop Client
+│   ├── main.py             # Desktop App Entry Point
+│   └── requirements.txt    # Desktop dependencies
 └── sample_equipment_data.csv # Sample dataset for testing
 ```
 
@@ -93,6 +111,18 @@ npm run dev
 ```
 *The web application will run at `http://localhost:5173/` (or the port shown in your terminal)*
 
+### 3. Frontend Setup (Desktop)
+
+Open a new terminal.
+
+```bash
+# Install Desktop Dependencies
+pip install pyqt5 matplotlib requests
+
+# Run the Desktop App
+python desktop-app/main.py
+```
+
 ## 📖 Usage Guide
 
 1.  **Home**: Overview of the application capabilities.
@@ -112,9 +142,13 @@ npm run dev
 
 ## 🔮 Future Roadmap
 
-*   **Desktop Application**: Native Windows app using PyQt5 (Planned).
 *   **Export Reports**: PDF/Image export for analysis results.
 *   **User Authentication**: Multi-user login system.
+*   **Real-time WebSocket**: For live data streaming.
 
+## 📤 Submission Details
+
+- **GitHub Repository**: https://github.com/kowshik-thatinati/chemical-equipment-visualizer
+- **Demo Video**: (Provided in the FOSSEE submission form)
 ---
 *Created for the Chemical Equipment Visualization Project.*
